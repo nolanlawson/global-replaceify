@@ -22,7 +22,7 @@ function streamToString(callback) {
   );
 }
 
-function versionify(filename, opts) {
+function replaceify(filename, opts) {
   var replacements = opts.replacements || {};
   return streamToString(function (contents, next) {
     try {
@@ -43,4 +43,4 @@ function versionify(filename, opts) {
   });
 }
 
-module.exports = versionify;
+module.exports = replaceify;
