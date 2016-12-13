@@ -2,9 +2,17 @@
   "name": "global-replaceify",
   "version": "1.0.0",
   "description": "Browserify transform to replace global variables with custom content",
-  "repository": "https://github.com/nolanlawson/global-replaceify.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nolanlawson/global-replaceify.git"
+  },
   "main": "index.js",
-  "keywords": [],
+  "keywords": [
+    "browserify",
+    "transform",
+    "replace",
+    "globals"
+  ],
   "author": "Nolan Lawson <nolan@nolanlawson.com>",
   "license": "Apache-2.0",
   "scripts": {
@@ -22,5 +30,9 @@
     "mocha": "2.4.5",
     "stream-to-promise": "1.1.0"
   },
-  "files": []
+  "files": [],
+  "bugs": {
+    "url": "https://github.com/nolanlawson/global-replaceify/issues"
+  },
+  "homepage": "https://github.com/nolanlawson/global-replaceify#readme"
 }
