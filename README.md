@@ -55,15 +55,18 @@ var bar = window.setTimeout;
 var baz = MyFakeBuffer.from("yolo");
 ```
 
-Whatever string you provide as a replacement will be directly inlined. So for instance if you do:
+As with any Browserify transform, it can also be applied globally using `global: true`.
 
 ```js
+browserify('./index.js').transform('global-replaceify', {
+  global: true,
   replacements: {
-    Buffer: 'require("buffer")'
+    process: '__process',
+    global: 'window',
+    Buffer: 'MyFakeBuffer'
   }
+});
 ```
-
-...then you can replace global variables with custom `require()` statements.
 
 CLI usage
 ---
@@ -76,9 +79,15 @@ browserify -t [ global-replaceify --replacements [ --foo bar ] ] ./index.js
 
 You can also specify multiple replacements: 
 
-```
+```bash
 browserify -t [ global-replaceify --replacements [ --process myProcess --global myGlobal ] ] ./index.js
 ```
+
+And you can also apply it, *ahem*, globally using `-g`:
+
+```bash
+browserify -g [ global-replaceify --replacements [ --foo bar ] ] ./index.js                       
+```  
 
 package.json usage
 ---
@@ -92,3 +101,29 @@ As with any Browserify transform, options can also be specified in `package.json
   }
 }
 ```
+
+Details
+----
+
+Whatever string you provide as a replacement will be directly inlined. So for instance if you do:
+
+```js
+  replacements: {
+    Buffer: 'require("buffer")'
+  }
+```
+
+...then you can replace global variables with custom `require()` statements. Browserify will attempt to pull in
+the `require()`d dependency like it normally would.
+
+So for instance:
+
+```js
+  replacements: {
+    $: 'require("jquery")',
+    window: 'require("global")'
+  }
+```
+
+This can be used to upgrade legacy code that references global variables, and point those globals to
+explicit `require()` calls instead.
