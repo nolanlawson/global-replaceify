@@ -3,7 +3,7 @@ global-replaceify [![Build Status](https://travis-ci.org/nolanlawson/global-repl
 
 Browserify transform to replace global variables with custom content.
 
-For instance, you could use it to replace all references to the global `process` object with `require('my-custom-process-impl')` or `__process` (to prevent Browserify from applying its own built-in implementation).
+For instance, you could use it to replace all references to the global `process` object with `require('my-custom-process-impl')` or `__process` (to prevent Browserify from inserting its own built-in implementation).
 
 Installation
 ----

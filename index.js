@@ -37,7 +37,6 @@ function replaceify(filename, opts) {
       });
       contents = magicString.toString();
     } catch (e) {}
-    debugger;
     this.push(contents);
     next();
   });
